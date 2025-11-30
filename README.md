@@ -15,6 +15,12 @@ Ao expandir a linha `HTML Form URL Encoded`, consegui ler o usuário e a senha s
 
 ![Evidência do Wireshark](evidence.png)
 
+## 🔧 Desafios na Análise
+Capturar dados em uma rede ativa gera muito ruído (milhares de pacotes irrelevantes).
+
+* **O Problema:** Encontrar a credencial específica no meio de todo o tráfego de rede da máquina.
+* **A Solução:** Utilizei filtros de display avançados (`http.request.method == POST`) para isolar apenas os pacotes que continham envio de formulários, descartando todo o resto do tráfego TCP/ARP.
+
 ## 🧠 O que aprendi
 1.  **Dados em Texto Claro:** Fiquei surpreso em ver que, sem o HTTPS, a senha trafega "pelada" na rede. Qualquer pessoa no mesmo Wi-Fi poderia ter lido isso.
 2.  **Análise de Pacotes:** Aprendi a navegar nas camadas do pacote (Frame, Ethernet, IP, TCP) até chegar no payload onde estão os dados do usuário.
